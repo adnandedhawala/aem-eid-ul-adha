@@ -1,4 +1,4 @@
-import { FullPageLoader, ZabihatList } from "@/components";
+import { FullPageLoader, GoshList, PayaList, ZabihatList } from "@/components";
 import { getTokensList, logout, updateTokenById, verifyUser } from "@/services";
 import { TOKEN_COUNTER, UserDetails, ZONE } from "@/types";
 import { getAuthToken } from "@/utils";
@@ -38,10 +38,10 @@ export default function TokensPage() {
             })
     }
 
-    const changeTokenStatus = (id:string,key:string,value:string)=>{
+    const changeTokenStatus = (id: string, key: string, value: string) => {
         setShowLoader(true);
         updateTokenById({
-            id,key,value
+            id, key, value
         }).then(() => {
             handleGetTokens()
         }).catch((err: any) => { })
@@ -103,7 +103,13 @@ export default function TokensPage() {
                             <h1 className="text-3xl font-normal text-center mb-4" >{tokenPageView ? tokenPageView + "  Counter" : ""}</h1>
                     }
                     {
-                        tokenPageView === TOKEN_COUNTER.ZABIHAT ? <ZabihatList handleChangeStatus={changeTokenStatus} tokenList={tokenList} /> : null
+                        tokenPageView === TOKEN_COUNTER.ZABIHAT ?
+                            <ZabihatList handleChangeStatus={changeTokenStatus} tokenList={tokenList} /> :
+                            tokenPageView === TOKEN_COUNTER.PAYA ?
+                            <PayaList handleChangeStatus={changeTokenStatus} tokenList={tokenList} />:
+                            tokenPageView === TOKEN_COUNTER.GOSH ?
+                            <GoshList handleChangeStatus={changeTokenStatus} tokenList={tokenList} />:
+                            null
                     }
                 </Content>
             </Layout>

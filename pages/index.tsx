@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { Inter } from 'next/font/google'
 import { Button, Card, Form, InputNumber, message } from 'antd'
 import { useEffect, useState } from 'react'
 import { getAuthToken, saveAuthToken } from '@/utils'
@@ -7,6 +8,7 @@ import { login, logout, verifyUser } from '@/services'
 import { ZONE } from '@/types'
 import { FullPageLoader } from '@/components'
 
+const inter = Inter({ subsets: ['latin'] })
 
 export default function Login() {
 
@@ -50,7 +52,7 @@ export default function Login() {
 
   return (
     <main
-      className={`flex min-h-screen items-center justify-center p-6`}
+      className={`flex min-h-screen items-center justify-center p-6 ${inter.className}`}
     >
       {
         showLoader ? <FullPageLoader /> : null

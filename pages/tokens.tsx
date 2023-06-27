@@ -47,8 +47,6 @@ export default function TokensPage() {
         }).catch((err: any) => { })
     }
 
-
-
     useEffect(() => {
         const user = getAuthToken();
         if (!user) {

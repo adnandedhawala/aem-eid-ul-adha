@@ -99,7 +99,7 @@ export default function DistributionPage() {
         if (!searchText) {
             setFilteredDistributionList(statusFilteredList)
         } else {
-            setFilteredDistributionList(statusFilteredList.filter(file => JSON.stringify(file).includes(searchText)))
+            setFilteredDistributionList(statusFilteredList.filter(file => file.file_number.toString()===searchText||file.full_name.toString().includes(searchText)))
         }
 
     }, [activeState, searchText, distributionList])
